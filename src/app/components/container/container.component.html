@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="container-info">
+        <h1>{{ child.title }}</h1>
+        <h2>{{ child.subtitle }}</h2>
+    </div>
+    <div [ngClass]="{'two-columns': collums === 2, 'three-columns': collums !== 2}" class="children">
+        <ng-content></ng-content>
+    </div>
+</div>

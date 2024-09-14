@@ -1,0 +1,38 @@
+@media (max-width: 400px){
+    .service{
+        width: 230px !important;
+    }   
+}
+
+.service{
+    background-color: #292C36;
+    padding: 20px;
+    width: 360px;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+}
+
+.service-title{
+    width: 94%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 12px;
+}
+
+.service-title > h1{
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    width: 100%;   
+}
+.service-info{
+    font-size: 16px;
+    color: #B0ADAD;
+    width: 100%;
+}

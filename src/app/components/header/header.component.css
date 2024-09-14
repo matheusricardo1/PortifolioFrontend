@@ -1,0 +1,85 @@
+@media (max-width: 1200px){
+    header{
+        left: -400px !important;
+    }
+}
+
+header{
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    width: 280px;
+    height: 100vh;
+    padding: 0px 20px;
+    background-color: #212121;
+    border-right: 1px solid #cccccc35;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+header > h1{
+    color: white;
+}
+
+nav ul li.on-observe {
+    text-decoration: underline;
+  }
+
+.personal-picture{
+    width: 85%;
+    margin: 20px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.personal-picture > img{
+    width: 100%;
+    height: 100%;
+}
+
+.social-media{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.social-media > a{
+    color: white;
+    text-decoration: none;
+}
+
+.home-scroll-sections{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.home-scroll-sections > ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.home-scroll-sections > li:hover{
+    color: #ccc;
+}
+
+.scroll-btn{
+    text-align: left;
+    color: white;
+    cursor: pointer;
+    padding: 8px 4px;
+    border-radius: 4px;
+    border: transparent;
+}
+
+.on-observe {
+    text-decoration: underline;
+  }

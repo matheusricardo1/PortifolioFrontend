@@ -1,0 +1,20 @@
+<header>
+    <div class="personal-picture">
+        <img src="assets/images/myself-img.jpg" alt="">
+    </div>
+    <h1>{{ owner.first_name }} {{ owner.last_name }}</h1>
+    <div class="social-media">
+        <a [href]='owner.linkedin' target="_blank">Linkedin</a>
+        <a [href]='owner.github' target="_blank">Github</a>
+        <a [href]='owner.whatsapp' target="_blank">WhatsApp</a>
+    </div>
+    <nav class="home-scroll-sections">
+        <ul>
+            <li class="scroll-btn" (click)="onScrollHome()" [class.on-observe]="currentSection === 'home'"><i></i> Ínicio</li>
+            <li class="scroll-btn" (click)="onScrollAbout()" [class.on-observe]="currentSection === 'about'"><i></i> Sobre Mim</li>
+            <li class="scroll-btn" (click)="onScrollServices()" [class.on-observe]="currentSection === 'services'"><i></i> Serviços</li>
+            <li class="scroll-btn" (click)="onScrollProjects()" [class.on-observe]="currentSection === 'projects'"><i></i> Projetos</li>
+            <li class="scroll-btn" (click)="onScrollContact()" [class.on-observe]="currentSection === 'contact'"><i></i> Contato</li>
+        </ul>
+    </nav>
+</header>
