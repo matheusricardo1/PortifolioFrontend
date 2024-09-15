@@ -1,6 +1,6 @@
 <section class="service">
     <div class="service-title">
-        <img src="assets/images/services/frontend.png" alt="">
+        <img [src]="service.image | serverImg" [alt]="service.name">
         <h1>{{ service.name }}</h1>
     </div>
     <p class="service-info">

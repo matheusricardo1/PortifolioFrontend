@@ -1,13 +1,12 @@
 <section class="about-me">
     <div class="picture">
-        <img src="assets/images/myself-img.jpg" alt="">
+        <img [src]="owner.image | serverImg" alt="">
     </div>
     <div class="left-side-section">
         <h1>SOBRE MIM</h1>
-        <h2>Sou o Matheus Ricardo</h2>
+        <h2>Sou o {{ owner.first_name }} {{ owner.last_name }}</h2>
         <div class="about-me-text">
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+            <p>{{ owner.about_me }}</p>
         </div>
     </div>
 </section>

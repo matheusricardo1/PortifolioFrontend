@@ -11,15 +11,15 @@
 
     <main class="main-content">
         <app-main-section [owner]="owner" #home id="home" />
-        <app-aboutme #about id="about"/>
+        <app-aboutme [owner]="owner" #about id="about"/>
 
-        <app-container [child]="service" [collums]="service.collums" #services id="services">
-            @for(service of service.children; track $index){
+        <app-container [child]="serviceContainer" [collums]="serviceContainer.collums" #services id="services">
+            @for(service of service; track $index){
                 <app-my-services [service]="service" #child/>
             }          
         </app-container>
-        <app-container [child]="project" #projects id="projects">
-            @for(project of project.children; track $index){
+        <app-container [child]="projectContainer" #projects id="projects">
+            @for(project of project; track $index){
                 <app-projects [project]="project" #child/>
             }
         </app-container>

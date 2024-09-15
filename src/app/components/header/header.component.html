@@ -1,6 +1,6 @@
 <header>
     <div class="personal-picture">
-        <img src="assets/images/myself-img.jpg" alt="">
+        <img [src]="owner.image | serverImg" alt="">
     </div>
     <h1>{{ owner.first_name }} {{ owner.last_name }}</h1>
     <div class="social-media">

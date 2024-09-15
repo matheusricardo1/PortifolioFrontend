@@ -1,12 +1,12 @@
 <div class="project">
     <div class="project-image">
-        <img [src]="project.image" [alt]="project.name">
+        <img [src]="project.image | serverImg" [alt]="project.name">
     </div>
     <div class="project-info">
         <h1 class="project-name">{{ project.name }}</h1>
         <div class="projects-links">
-            <a [href]="project.demo">Ver Demo</a>
-            <a [href]="project.github">Ver Código</a>
+            <a [href]="project.demo" target="_blank">Ver Demo</a>
+            <a [href]="project.github" target="_blank">Ver Código</a>
         </div>
     </div>
 </div>

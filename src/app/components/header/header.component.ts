@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Owner } from '../../models/owner.model';
+import { ServerImagePipe } from '../../pipes/server-image.pipe';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [ServerImagePipe],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

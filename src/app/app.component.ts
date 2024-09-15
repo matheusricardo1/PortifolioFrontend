@@ -8,6 +8,8 @@ import { Project } from './models/project.model';
 import { OwnerService } from './services/owner.service';
 import { Owner } from './models/owner.model';
 import { HttpClientModule } from '@angular/common/http';
+import { ProjectService } from './services/project.service';
+import { ServiceService } from './services/service.service';
 
 @Component({
   selector: 'app-root',
@@ -18,70 +20,57 @@ import { HttpClientModule } from '@angular/common/http';
 })
 
 export class AppComponent implements OnInit {
+  title = 'frontend';
   owner!: Owner; 
+  project!: Project[];
+  service!: Service[];
 
-  constructor(private ownerService: OwnerService) {}
+  projectContainer: Container<Project> = {
+    title: "O QUE EU FAÇO?",
+    subtitle: "Minhas Especialidade",
+    children: this.project,
+  }
+
+  serviceContainer: Container<Service> = {
+    title: "O QUE EU FAÇO?",
+    subtitle: "Minhas Especialidade",
+    collums: 2,
+    children: this.service,
+  }
+
+  constructor(
+    private ownerService: OwnerService,
+    private projectService: ProjectService,
+    private serviceService: ServiceService,
+  ) {}
 
   ngOnInit(): void {
     this.ownerService.get().subscribe({
       next: (data: Owner) => { 
         this.owner = data;
-        console.log(data)
       },
       error: (error) => {
         console.error('Erro ao carregar os dados do proprietário', error);
       },
     });
-  }
 
-  title = 'frontend';
-  
-  service: Container<Service> = {
-    title: "O QUE EU FAÇO?",
-    subtitle: "Minhas Especialidade",
-    collums: 2,
-    children: [
-      {
-        id: 1,
-        image: '',
-        name: 'Back-end Development',
-        description: 'Lom ipsum dolo, sit amet consectetu adpisicing elit, rem voluptas sed blanditiis',
+    this.projectService.get().subscribe({
+      next: (data: Project[]) => { 
+        this.project = data;
       },
-      {
-        id: 2,
-        image: '',
-        name: 'Front-end Development',
-        description: 'Lom ipsum dolo, sit amet consectetu adpisicing elit, rem voluptas sed blanditiis',
+      error: (error) => {
+        console.error('Erro ao carregar os dados do proprietário', error);
       },
-    ],
-  }
+    });
 
-  project: Container<Project> = {
-    title: "PORTIFÓLIO",
-    subtitle: "Últimos Projetos",
-    children: [
-      {
-        id: 1,
-        image: 'assets/images/projects/1.png',
-        name: 'Need Food App Design',
-        demo: 'oi!',
-        github: 'oi!',
+    this.serviceService.get().subscribe({
+      next: (data: Service[]) => { 
+        this.service = data;
       },
-      {
-        id: 2,
-        image: 'assets/images/projects/1.png',
-        name: 'Need Food App Design2',
-        demo: 'oi!',
-        github: 'oi!',
+      error: (error) => {
+        console.error('Erro ao carregar os dados do proprietário', error);
       },
-      {
-        id: 3,
-        image: 'assets/images/projects/1.png',
-        name: 'Need Food App Design3',
-        demo: 'oi!',
-        github: 'oi!',
-      },
-    ]
+    });
   }
 
   @ViewChild('home', { read: ElementRef }) homeElement!: ElementRef;
@@ -124,7 +113,6 @@ export class AppComponent implements OnInit {
 
       if (closestElement) {
         const sectionId = (closestElement as HTMLElement).id;
-        console.log(`Seção visível no centro: ${sectionId}`);
         this.sectionInView = sectionId;
       }
     }, options);

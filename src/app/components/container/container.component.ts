@@ -18,9 +18,6 @@ export class ContainerComponent {
     if(this.collums === undefined){
       this.collums = this.children.length
     }
-    console.log("Child: ", this.child);
-    console.log("Child: ", this.child.children);
-    console.log(`Número de filhos: ${this.children.length}`);
   }
 
 }
