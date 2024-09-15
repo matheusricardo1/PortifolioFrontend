@@ -1,5 +1,10 @@
 # Frontend
 
+
+![image](https://github.com/user-attachments/assets/1bc3a260-dd24-48ce-9670-22a9127c75a6)
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.2.
 
 ## Development server
