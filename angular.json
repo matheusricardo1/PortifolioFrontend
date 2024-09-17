@@ -88,6 +88,14 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "repo": "https://github.com/matheusricardo1/PortifolioFrontend.git",
+            "branch": "gh-pages",
+            "baseHref": "/PortifolioFrontend/"
+          }
         }
       }
     }
