@@ -94,7 +94,7 @@
           "options": {
             "repo": "https://github.com/matheusricardo1/PortifolioFrontend.git",
             "branch": "gh-pages",
-            "baseHref": "/PortifolioFrontend/"
+            "baseHref": "/"
           }
         }
       }

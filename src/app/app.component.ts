@@ -20,7 +20,7 @@ import { ServiceService } from './services/service.service';
 })
 
 export class AppComponent implements OnInit {
-  title = 'frontend';
+  title = 'Portifólio';
   owner!: Owner; 
   project!: Project[];
   service!: Service[];
