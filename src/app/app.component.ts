@@ -10,16 +10,23 @@ import { Owner } from './models/owner.model';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectService } from './services/project.service';
 import { ServiceService } from './services/service.service';
+import { catchError, forkJoin } from 'rxjs';
+import { LoadingComponent } from "./components/loading/loading.component";
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HttpClientModule, HeaderComponent, MainSectionComponent, AboutmeComponent, ProjectComponent, ContainerComponent, MyServicesComponent, ContactMeComponent, FooterComponent ],
+  imports: [RouterOutlet, NgClass, HttpClientModule, HeaderComponent, MainSectionComponent, AboutmeComponent, ProjectComponent, ContainerComponent, MyServicesComponent, ContactMeComponent, FooterComponent, LoadingComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 
 export class AppComponent implements OnInit {
+  isLoading = true;
+  isContentLoaded = false;
+  fadeOutLoading = false;
+
   title = 'Portifólio';
   owner!: Owner; 
   project!: Project[];
@@ -45,31 +52,35 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.ownerService.get().subscribe({
-      next: (data: Owner) => { 
-        this.owner = data;
+    // Combine todas as requisições HTTP
+    forkJoin({
+      owner: this.ownerService.get().pipe(catchError(error => {
+        console.error('Erro ao carregar os dados do proprietário', error);
+        return [];
+      })),
+      projects: this.projectService.get().pipe(catchError(error => {
+        console.error('Erro ao carregar os dados dos projetos', error);
+        return [];
+      })),
+      services: this.serviceService.get().pipe(catchError(error => {
+        console.error('Erro ao carregar os dados dos serviços', error);
+        return [];
+      }))
+    }).subscribe({
+      next: ({ owner, projects, services }) => {
+        this.owner = owner;
+        this.project = projects;
+        this.service = services;
+        this.fadeOutLoading = true; // Inicia o efeito de fade-out
+        setTimeout(() => {
+          this.isLoading = false; // Todos os dados foram carregados
+          this.isContentLoaded = true; // Define o conteúdo como carregado
+        }, 1000); // Tempo do efeito de fade-out
       },
       error: (error) => {
-        console.error('Erro ao carregar os dados do proprietário', error);
-      },
-    });
-
-    this.projectService.get().subscribe({
-      next: (data: Project[]) => { 
-        this.project = data;
-      },
-      error: (error) => {
-        console.error('Erro ao carregar os dados do proprietário', error);
-      },
-    });
-
-    this.serviceService.get().subscribe({
-      next: (data: Service[]) => { 
-        this.service = data;
-      },
-      error: (error) => {
-        console.error('Erro ao carregar os dados do proprietário', error);
-      },
+        console.error('Erro ao carregar os dados', error);
+        this.isLoading = false; // Em caso de erro, pare o carregador
+      }
     });
   }
 

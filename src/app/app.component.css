@@ -1,3 +1,30 @@
+
+/* Animação de fade-out */
+@keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+  
+  .loading-fade-out {
+    animation: fadeOut 0.8s ease-out forwards; /* Aplica a animação com duração de 1 segundo */
+  }
+  
+  /* Certifica-se de que o conteúdo principal é exibido somente após o carregamento */
+  .app-container {
+    display: none; /* Inicialmente escondido para garantir que apareça após o carregamento */
+  }
+  
+  /* Exibe o conteúdo principal após o carregamento */
+  .app-container.loaded {
+    display: block;
+  }
+  
+
 @media (max-width: 1200px){
     .main-content {
         margin-left: 0px !important;

@@ -1,29 +1,33 @@
-<div class="app-container">
-    <app-header
-        [owner]="owner"
-        [sectionInView]="sectionInView"
-        (scrollHome)="handleScrollHome()"
-        (scrollAbout)="handleScrollAbout()"
-        (scrollServices)="handleScrollServices()"
-        (scrollProjects)="handleScrollProjects()"
-        (scrollContact)="handleScrollContact()"
-    />
+@if(isLoading){
+    <app-loading [ngClass]="{'loading-fade-out': fadeOutLoading}" ></app-loading>
+}
+    <div class="app-container">
+        <app-header
+            [owner]="owner"
+            [sectionInView]="sectionInView"
+            (scrollHome)="handleScrollHome()"
+            (scrollAbout)="handleScrollAbout()"
+            (scrollServices)="handleScrollServices()"
+            (scrollProjects)="handleScrollProjects()"
+            (scrollContact)="handleScrollContact()"
+        />
 
-    <main class="main-content">
-        <app-main-section [owner]="owner" #home id="home" />
-        <app-aboutme [owner]="owner" #about id="about"/>
+        <main class="main-content">
+            <app-main-section [owner]="owner" #home id="home" />
+            <app-aboutme [owner]="owner" #about id="about"/>
 
-        <app-container [child]="serviceContainer" [collums]="serviceContainer.collums" #services id="services">
-            @for(service of service; track $index){
-                <app-my-services [service]="service" #child/>
-            }          
-        </app-container>
-        <app-container [child]="projectContainer" #projects id="projects">
-            @for(project of project; track $index){
-                <app-projects [project]="project" #child/>
-            }
-        </app-container>
+            <app-container [child]="serviceContainer" [collums]="serviceContainer.collums" #services id="services">
+                @for(service of service; track $index){
+                    <app-my-services [service]="service" #child/>
+                }          
+            </app-container>
+            <app-container [child]="projectContainer" #projects id="projects">
+                @for(project of project; track $index){
+                    <app-projects [project]="project" #child/>
+                }
+            </app-container>
 
-        <app-contact-me [contactMe]="owner.contact_me" #contact id="contact" />
-    </main>
-</div>
+            <app-contact-me [contactMe]="owner.contact_me" #contact id="contact" />
+        </main>
+    </div>
+
