@@ -52,7 +52,6 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Combine todas as requisições HTTP
     forkJoin({
       owner: this.ownerService.get().pipe(catchError(error => {
         console.error('Erro ao carregar os dados do proprietário', error);
@@ -71,15 +70,16 @@ export class AppComponent implements OnInit {
         this.owner = owner;
         this.project = projects;
         this.service = services;
-        this.fadeOutLoading = true; // Inicia o efeito de fade-out
+        console.log(owner, projects, services)
+        this.fadeOutLoading = true; 
         setTimeout(() => {
-          this.isLoading = false; // Todos os dados foram carregados
-          this.isContentLoaded = true; // Define o conteúdo como carregado
-        }, 1000); // Tempo do efeito de fade-out
+          this.isLoading = false; 
+          this.isContentLoaded = true; 
+        }, 1000); 
       },
       error: (error) => {
         console.error('Erro ao carregar os dados', error);
-        this.isLoading = false; // Em caso de erro, pare o carregador
+        this.isLoading = false; 
       }
     });
   }
