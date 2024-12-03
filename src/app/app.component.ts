@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     forkJoin({
-      owner: this.ownerService.get().pipe(catchError(error => {
+      owner: this.ownerService.getLastOwner().pipe(catchError(error => {
         console.error('Erro ao carregar os dados do proprietário', error);
         return [];
       })),
