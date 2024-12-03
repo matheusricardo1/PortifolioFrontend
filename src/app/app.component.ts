@@ -72,10 +72,14 @@ export class AppComponent implements OnInit {
         this.service = services;
         console.log(owner, projects, services)
         this.fadeOutLoading = true; 
-        setTimeout(() => {
-          this.isLoading = false; 
-          this.isContentLoaded = true; 
-        }, 1000); 
+
+        this.waitForImagesToLoad().then(() => {
+          this.fadeOutLoading = true; 
+          setTimeout(() => {
+            this.isLoading = false; 
+            this.isContentLoaded = true; 
+          }, 1000); 
+        });
       },
       error: (error) => {
         console.error('Erro ao carregar os dados', error);
@@ -95,6 +99,41 @@ export class AppComponent implements OnInit {
   
   ngAfterViewInit() {
     this.setupIntersectionObserver();
+  }
+
+  private waitForImagesToLoad(): Promise<void> {
+    return new Promise((resolve) => {
+      const images = Array.from(document.querySelectorAll('img'));
+      const totalImages = images.length;
+      let loadedImages = 0;
+
+      if (totalImages === 0) {
+        resolve();
+        return;
+      }
+
+      images.forEach((img) => {
+        if (img.complete) {
+          loadedImages++;
+          if (loadedImages === totalImages) {
+            resolve();
+          }
+        } else {
+          img.addEventListener('load', () => {
+            loadedImages++;
+            if (loadedImages === totalImages) {
+              resolve();
+            }
+          });
+          img.addEventListener('error', () => {
+            loadedImages++;
+            if (loadedImages === totalImages) {
+              resolve();
+            }
+          });
+        }
+      });
+    });
   }
 
   private setupIntersectionObserver() {
@@ -154,4 +193,5 @@ export class AppComponent implements OnInit {
   handleScrollContact() {
     this.contactElement.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
+
 }
