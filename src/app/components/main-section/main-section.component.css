@@ -51,19 +51,22 @@
 }
 
 .social-media {
-    width: 100%;
+    width: 50%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 }
 
 .social-media > a {
-    width: 42px;
-    height: 42px;
+    margin: 0 0;
+    width: 35px;
+    height: 35px;
 }
 
-.social-media > a > img {
+.social-media > a > svg {
     width: 100%;
-    border-radius: 50%;
-    overflow: hidden;
+}
+
+.social-media > a > .likedin-icon {
+    width: 115%;
 }
