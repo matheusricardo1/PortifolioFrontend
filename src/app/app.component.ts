@@ -1,7 +1,7 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { AboutmeComponent, ContactMeComponent, ContainerComponent, FooterComponent, HeaderComponent, MainSectionComponent, MyServicesComponent, ProjectComponent } from "./components/components";
+import { AboutmeComponent, ContactMeComponent, ContainerComponent, HeaderComponent, MainSectionComponent, MyServicesComponent, ProjectComponent } from "./components/components";
 import { Container } from './models/container.models';
 import { Service } from './models/services.model';
 import { Project } from './models/project.model';
@@ -17,7 +17,7 @@ import { NgClass } from '@angular/common';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgClass, HttpClientModule, HeaderComponent, MainSectionComponent, AboutmeComponent, ProjectComponent, ContainerComponent, MyServicesComponent, ContactMeComponent, FooterComponent, LoadingComponent],
+  imports: [NgClass, HttpClientModule, HeaderComponent, MainSectionComponent, AboutmeComponent, ProjectComponent, ContainerComponent, MyServicesComponent, ContactMeComponent, LoadingComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -27,22 +27,22 @@ export class AppComponent implements OnInit {
   isContentLoaded = false;
   fadeOutLoading = false;
 
-  title = 'Portifólio';
+  title = 'Portifólio - Matheus Ricardo Oliveira Lima';
   owner!: Owner; 
   project!: Project[];
   service!: Service[];
 
-  projectContainer: Container<Project> = {
-    title: "O QUE EU FAÇO?",
-    subtitle: "Minhas Especialidade",
-    children: this.project,
-  }
-
   serviceContainer: Container<Service> = {
     title: "O QUE EU FAÇO?",
-    subtitle: "Minhas Especialidade",
+    subtitle: "Meus Serviços",
     collums: 2,
     children: this.service,
+  }
+
+  projectContainer: Container<Project> = {
+    title: "O QUE EU FAÇO?",
+    subtitle: "Meus Projetos",
+    children: this.project,
   }
 
   constructor(

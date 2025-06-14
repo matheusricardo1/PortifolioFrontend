@@ -6,4 +6,3 @@ export { ProjectComponent } from "./project/project.component";
 export { ContainerComponent } from "./container/container.component";
 export { MyServicesComponent } from "./my-services/my-services.component";
 export { ContactMeComponent } from './contact-me/contact-me.component';
-export { FooterComponent } from "./footer/footer.component";

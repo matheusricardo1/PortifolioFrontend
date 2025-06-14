@@ -6,7 +6,8 @@
         <h1>SOBRE MIM</h1>
         <h2>Sou o {{ owner.first_name }} {{ owner.last_name }}</h2>
         <div class="about-me-text">
-            <p>{{ owner.about_me }}</p>
+           <p [innerHTML]="owner.about_me | linebreak"></p>
+
         </div>
     </div>
 </section>

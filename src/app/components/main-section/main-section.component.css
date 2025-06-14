@@ -68,5 +68,9 @@
 }
 
 .social-media > a > .likedin-icon {
-    width: 115%;
+    width: 115% !important;
+}
+
+.youtube-icon{
+    transform: scaleX(1.25);
 }

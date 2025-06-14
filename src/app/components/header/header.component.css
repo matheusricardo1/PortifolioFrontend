@@ -89,4 +89,8 @@ nav ul li.on-observe {
 
 .on-observe {
     text-decoration: underline;
-  }
+}
+
+.youtube-icon{
+    transform: scaleX(1.25);
+}
